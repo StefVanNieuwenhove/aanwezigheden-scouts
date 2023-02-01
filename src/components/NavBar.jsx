@@ -146,7 +146,7 @@ export default function NavBar() {
           </IconButton>
         </DrawerHeader>
         <Divider />
-        {/* <List>
+        <List>
           <Tooltip title="Home" placement="right">
             <Link to="/">
               <ListItem
@@ -390,7 +390,7 @@ export default function NavBar() {
               </ListItem>
             </Link>
           </Tooltip>
-        </List> */}
+        </List>
       </Drawer>
       <Box component="main">
         <DrawerHeader />
