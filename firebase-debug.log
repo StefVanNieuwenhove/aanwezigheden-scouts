@@ -1,0 +1,48 @@
+[debug] [2023-02-01T20:31:30.761Z] ----------------------------------------------------------------------
+[debug] [2023-02-01T20:31:30.762Z] Command:       /usr/local/bin/node /usr/local/bin/firebase emulators:start
+[debug] [2023-02-01T20:31:30.763Z] CLI Version:   11.22.0
+[debug] [2023-02-01T20:31:30.763Z] Platform:      darwin
+[debug] [2023-02-01T20:31:30.763Z] Node Version:  v16.17.1
+[debug] [2023-02-01T20:31:30.766Z] Time:          Wed Feb 01 2023 21:31:30 GMT+0100 (Central European Standard Time)
+[debug] [2023-02-01T20:31:30.766Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-02-01T20:31:30.839Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-02-01T20:31:30.839Z] > authorizing via signed-in user (stef.vannieuwenhove86@gmail.com)
+[info] i  emulators: Starting emulators: hosting {"metadata":{"emulator":{"name":"hub"},"message":"Starting emulators: hosting"}}
+[debug] [2023-02-01T20:31:31.065Z] [logging] Logging Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[warn] ⚠  hosting: Hosting Emulator unable to start on port 5000, starting on 5002 instead. {"metadata":{"emulator":{"name":"hosting"},"message":"Hosting Emulator unable to start on port 5000, starting on 5002 instead."}}
+[debug] [2023-02-01T20:31:31.066Z] [hosting] Hosting Emulator only supports listening on one address (127.0.0.1). Not listening on ::1
+[debug] [2023-02-01T20:31:31.066Z] assigned listening specs for emulators {"user":{"hub":[{"address":"127.0.0.1","family":"IPv4","port":4400},{"address":"::1","family":"IPv6","port":4400}],"logging":[{"address":"127.0.0.1","family":"IPv4","port":4500}],"hosting":[{"address":"127.0.0.1","family":"IPv4","port":5002}]},"metadata":{"message":"assigned listening specs for emulators"}}
+[debug] [2023-02-01T20:31:31.072Z] [hub] writing locator at /var/folders/7b/34scb2ld0y5cgxrg5876mlrh0000gn/T/hub-aanwezigheden-scouts-client.json
+[debug] [2023-02-01T20:31:31.083Z] >>> [apiv2][query] GET https://firebasehosting.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client/sites 
+[debug] [2023-02-01T20:31:32.038Z] <<< [apiv2][status] GET https://firebasehosting.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client/sites 200
+[debug] [2023-02-01T20:31:32.038Z] <<< [apiv2][body] GET https://firebasehosting.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client/sites {"sites":[{"name":"projects/aanwezigheden-scouts-client/sites/aanwezigheden-scouts-client","defaultUrl":"https://aanwezigheden-scouts-client.web.app","appId":"1:799038011769:web:5a58712a1e7eb4a48a17a8","type":"DEFAULT_SITE"}]}
+[debug] [2023-02-01T20:31:32.039Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client/webApps/1:799038011769:web:5a58712a1e7eb4a48a17a8/config [none]
+[debug] [2023-02-01T20:31:33.085Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client/webApps/1:799038011769:web:5a58712a1e7eb4a48a17a8/config 200
+[debug] [2023-02-01T20:31:33.085Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client/webApps/1:799038011769:web:5a58712a1e7eb4a48a17a8/config {"projectId":"aanwezigheden-scouts-client","appId":"1:799038011769:web:5a58712a1e7eb4a48a17a8","storageBucket":"aanwezigheden-scouts-client.appspot.com","locationId":"europe-west","apiKey":"AIzaSyCt0esEO27gupFxsMmg6an7scpd36q5JAY","authDomain":"aanwezigheden-scouts-client.firebaseapp.com","messagingSenderId":"799038011769"}
+[debug] [2023-02-01T20:31:33.109Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client [none]
+[debug] [2023-02-01T20:31:33.433Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client 200
+[debug] [2023-02-01T20:31:33.434Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/aanwezigheden-scouts-client {"projectId":"aanwezigheden-scouts-client","projectNumber":"799038011769","displayName":"aanwezigheden-scouts","name":"projects/aanwezigheden-scouts-client","resources":{"hostingSite":"aanwezigheden-scouts-client","storageBucket":"aanwezigheden-scouts-client.appspot.com","locationId":"europe-west"},"state":"ACTIVE","etag":"1_6fbb65b3-c501-4849-8adc-02af3a63d6d7"}
+[info] i  hosting[aanwezigheden-scouts-client]: Serving hosting files from: public {"metadata":{"emulator":{"name":"hosting"},"message":"Serving hosting files from: \u001b[1mpublic\u001b[22m"}}
+[info] ✔  hosting[aanwezigheden-scouts-client]: Local server: http://127.0.0.1:5002 {"metadata":{"emulator":{"name":"hosting"},"message":"Local server: \u001b[4m\u001b[1mhttp://127.0.0.1:5002\u001b[22m\u001b[24m"}}
+[warn] ⚠  emulators: The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project. {"metadata":{"emulator":{"name":"hub"},"message":"The Emulator UI is not starting, either because none of the emulated products have an interaction layer in Emulator UI or it cannot determine the Project ID. Pass the --project flag to specify a project."}}
+[info] 
+┌─────────────────────────────────────────────────────────────┐
+│ ✔  All emulators ready! It is now safe to connect your app. │
+└─────────────────────────────────────────────────────────────┘
+
+┌──────────┬────────────────┐
+│ Emulator │ Host:Port      │
+├──────────┼────────────────┤
+│ Hosting  │ 127.0.0.1:5002 │
+└──────────┴────────────────┘
+  Emulator Hub running at 127.0.0.1:4400
+  Other reserved ports: 4500
+
+Issues? Report them at https://github.com/firebase/firebase-tools/issues and attach the *-debug.log files.
+ 
+[info] i  hosting: 127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] "GET / HTTP/1.1" 200 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] \"GET / HTTP/1.1\" 200 - \"-\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] "GET /%PUBLIC_URL%/favicon.ico HTTP/1.1" 500 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] \"GET /%PUBLIC_URL%/favicon.ico HTTP/1.1\" 500 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [01/Feb/2023:20:31:57 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
+[info] i  hosting: 127.0.0.1 - - [01/Feb/2023:20:32:01 +0000] "GET /%PUBLIC_URL%/manifest.json HTTP/1.1" 500 - "http://127.0.0.1:5002/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36" {"metadata":{"emulator":{"name":"hosting"},"message":"127.0.0.1 - - [01/Feb/2023:20:32:01 +0000] \"GET /%PUBLIC_URL%/manifest.json HTTP/1.1\" 500 - \"http://127.0.0.1:5002/\" \"Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36\""}}
