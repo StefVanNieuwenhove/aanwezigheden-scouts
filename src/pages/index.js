@@ -1,0 +1,9 @@
+export {default as Home} from './Home';
+export {default as Kapoenen} from './Kapoenen';
+export {default as Wouters} from './Wouters';
+export {default as Jonggivers} from './Jonggivers';
+export {default as Givers} from './Givers';
+export {default as Jins} from './Jins';
+export {default as Add} from './AddPage';
+export {default as Delete} from './DeletePage';
+export {default as NotFound} from './NotFound';
