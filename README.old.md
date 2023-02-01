@@ -1,1 +1,0 @@
-# aanwezigheden-scouts
