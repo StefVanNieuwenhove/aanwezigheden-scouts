@@ -15,3 +15,5 @@
 
 * om aanwezigheden te kunnen raadplegen/updaten
         - SELECT COUNT(*) FROM aanwezigheid WHERE lid_id = ?
+
+* cypress testen
