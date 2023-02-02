@@ -10,6 +10,7 @@ import {
   getDoc,
   query,
   where,
+  orderBy
 } from 'firebase/firestore';
 import db from '../config/firebase';
 import { v4 as uuidv4 } from 'uuid';
@@ -17,8 +18,8 @@ import { v4 as uuidv4 } from 'uuid';
 export const getLeden = async () => {
   try {
     const leden = [];
-    const querySnapshot = await getDocs(collection(db, 'Leden'));
-    querySnapshot.forEach((doc) => {
+    const querySnapshot = await getDocs(collection(db, 'Leden'), orderBy(tak));
+     querySnapshot.forEach((doc) => {
       const lid = { id: doc.id, ...doc.data() };
       leden.push(lid);
     });
@@ -44,7 +45,7 @@ export const getLidById = async (id) => {
 export const getLedenByTak = async (tak) => {
   try {
     const leden = [];
-    const q = query(collection(db, 'Leden'), where('tak', '==', `${tak}`));
+    const q = query(collection(db, 'Leden'), where('tak', '==', `${tak}`), orderBy(aanwezig));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       const lid = { id: doc.id, ...doc.data() };
