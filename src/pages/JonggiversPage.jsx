@@ -30,7 +30,7 @@ const JonggiversPage = () => {
   const [id, setId] = useState('');
 
   useEffect(() => {
-    getLedenByTak('jonggiver')
+    getLedenByTak('JONGGIDSEN/JONGVERKENNERS')
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   }, [update]);

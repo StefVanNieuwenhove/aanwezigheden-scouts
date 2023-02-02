@@ -30,7 +30,7 @@ const GiversPage = () => {
   const [id, setId] = useState('');
 
   useEffect(() => {
-    getLedenByTak('giver')
+    getLedenByTak('GIDSEN/VERKENNERS')
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   }, [update]);
@@ -166,7 +166,7 @@ const GiversPage = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {'Aanwezigheid toeveogen?'}
+          {'Aanwezigheid toevoegen?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
