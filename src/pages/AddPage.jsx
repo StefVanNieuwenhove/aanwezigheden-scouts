@@ -1,150 +1,43 @@
 /** @format */
 
-import { useState } from 'react';
-import { createLid } from '../api/leden';
-import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import {
-  Box,
-  TextField,
-  Button,
-  Container,
-  FormControl,
-  Grid,
-  Snackbar,
-  Alert,
-  Autocomplete,
-} from '@mui/material';
-
-const takken = ['kapoen', 'wouter', 'jonggiver', 'giver', 'jin'];
-const validationSchema = Yup.object({
-  firstname: Yup.string().required('Firstname is required'),
-  lastname: Yup.string().required('Lastname is required'),
-  tak: Yup.string().required('Tak is required').isType(takken),
-});
+import React, { useState } from 'react';
+import { AddForm, CsvParse } from '../components';
+import { Box, Tab, AppBar } from '@mui/material';
+import { TabPanel, TabContext, TabList } from '@mui/lab';
 
 export default function AddPage() {
-  const [open, setOpen] = useState(false);
-  const [focus, setFocus] = useState(true);
+  const [tab, setTab] = useState('2');
 
-  const { values, handleChange, handleSubmit, errors, handleReset } = useFormik(
-    {
-      initialValues: {
-        firstname: '',
-        lastname: '',
-        tak: 'kapoen',
-      },
-      onSubmit: (values) => {
-        handleReset();
-        setOpen(true);
-        createLid(values);
-        setFocus(true);
-      },
-      validationSchema,
-    }
-  );
-
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return;
-    }
-    setOpen(false);
+  const handleChange = (event, newValue) => {
+    setTab(newValue);
   };
 
   return (
     <>
-      <Box sx={{ marginTop: '2rem' }}>
-        <Container maxWidth="sm">
-          <FormControl sx={{ padding: '1rem' }} fullWidth variant="outlined">
-            <TextField
-              name="firstname"
-              color="success"
-              label="Firstname"
-              margin="normal"
-              onChange={handleChange}
-              required
-              variant="outlined"
-              value={values.firstname}
-              autoFocus={focus}
-              error={errors && errors?.firstname ? true : false}
-              helperText={errors?.firstname}
-            />
-            <TextField
-              name="lastname"
-              color="success"
-              label="Lastname"
-              margin="normal"
-              onChange={handleChange}
-              required
-              variant="outlined"
-              value={values.lastname}
-              error={errors && errors?.lastname ? true : false}
-              helperText={errors?.lastname}
-            />
-            <Autocomplete
-              name="tak"
-              color="success"
-              required
-              id="tak"
-              disablePortal
-              onChange={(e, value) => {
-                handleChange({ target: { name: 'tak', value } });
-              }}
-              options={takken}
-              renderInput={(params) => (
-                <TextField
-                  {...params}
-                  label="tak"
-                  color="success"
-                  margin="dense"
-                  value={values.tak}
-                  onChange={handleChange}
-                  error={errors && errors?.tak ? true : false}
-                  helperText={errors?.tak}
-                />
-              )}
-            />
-            <Grid
-              container
-              directoin="row"
-              columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-              paddingTop={2}
-            >
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  color="warning"
-                  fullWidth
-                  onClick={handleReset}
-                >
-                  Reset
-                </Button>
-              </Grid>
-              <Grid item xs={6}>
-                <Button
-                  variant="contained"
-                  color="success"
-                  fullWidth
-                  onClick={handleSubmit}
-                >
-                  Voeg toe
-                </Button>
-              </Grid>
-            </Grid>
-          </FormControl>
-        </Container>
+      <Box sx={{ width: '100%', typography: 'body1' }}>
+        <TabContext value={tab}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <AppBar sx={{ mt: 8, border: '1px solid black' }}>
+              <TabList
+                onChange={handleChange}
+                variant="fullWidth"
+                centered
+                textColor="inherit"
+                indicatorColor="inherit"
+              >
+                <Tab label="Formulier" value="1" />
+                <Tab label="CSV bestand" value="2" />
+              </TabList>
+            </AppBar>
+          </Box>
+          <TabPanel value={'1'}>
+            <AddForm />
+          </TabPanel>
+          <TabPanel value={'2'}>
+            <CsvParse />
+          </TabPanel>
+        </TabContext>
       </Box>
-      <Snackbar
-        open={open}
-        autoHideDuration={3000}
-        onClose={handleClose}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        severity="success"
-      >
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
-          Lid is succesvol toegvoegd
-        </Alert>
-      </Snackbar>
     </>
   );
 }

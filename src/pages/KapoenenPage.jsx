@@ -30,7 +30,7 @@ const KapoenenPage = () => {
   const [id, setId] = useState('');
 
   useEffect(() => {
-    getLedenByTak('kapoen')
+    getLedenByTak('KAPOENEN')
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   }, [update]);
@@ -166,7 +166,7 @@ const KapoenenPage = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {'Aanwezigheid toeveogen?'}
+          {'Aanwezigheid toevoegen?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

@@ -30,7 +30,7 @@ const WoutersPage = () => {
   const [id, setId] = useState('');
 
   useEffect(() => {
-    getLedenByTak('wouter')
+    getLedenByTak('KABOUTERS/WELPEN')
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   }, [update]);
@@ -166,7 +166,7 @@ const WoutersPage = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {'Aanwezigheid toeveogen?'}
+          {'Aanwezigheid toevoegen?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">

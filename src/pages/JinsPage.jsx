@@ -31,7 +31,7 @@ const JinsPage = () => {
   const [id, setId] = useState('');
 
   useEffect(() => {
-    getLedenByTak('jin')
+    getLedenByTak('JIN')
       .then((res) => setData(res))
       .catch((err) => console.log(err));
   }, [update]);
@@ -167,7 +167,7 @@ const JinsPage = () => {
         aria-describedby="alert-dialog-description"
       >
         <DialogTitle id="alert-dialog-title">
-          {'Aanwezigheid toeveogen?'}
+          {'Aanwezigheid toevoegen?'}
         </DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-description">
