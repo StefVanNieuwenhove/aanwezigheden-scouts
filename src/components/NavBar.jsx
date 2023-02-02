@@ -116,7 +116,7 @@ function NavBar(props) {
             </ListItemText>
           </ListItemButton>
         </ListItem>
-        {/* <ListItem disablePadding>
+        <ListItem disablePadding>
           <ListItemButton
             sx={{ textAlign: 'center' }}
             component={NavLink}
@@ -151,7 +151,7 @@ function NavBar(props) {
               <Typography variant="h6">remove</Typography>
             </ListItemText>
           </ListItemButton>
-        </ListItem> */}
+        </ListItem>
       </List>
       <Divider />
     </Box>
@@ -249,7 +249,7 @@ function NavBar(props) {
               >
                 <Typography variant="h6">Givers</Typography>
               </Button>
-              {/* <Button
+              <Button
                 ize="large"
                 sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
                 component={NavLink}
@@ -275,7 +275,7 @@ function NavBar(props) {
                 style={({ isActive }) => (isActive ? activeStyle : undefined)}
               >
                 <Typography variant="h6">Remove</Typography>
-              </Button> */}
+              </Button>
             </Box>
           </Toolbar>
         </AppBar>
