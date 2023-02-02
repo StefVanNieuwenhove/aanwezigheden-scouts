@@ -1,0 +1,17 @@
+**TODO**
+--------------------
+
+* auth met gebruikersnaam en wachtwoord om de aanwezigheden te kunnen raadplegen/updaten
+* extra table vergadering 
+        - id (uuid)
+        - name (string)
+        - date (date)
+        - leden (array of uuid)
+
+* extra table aanwezigheid
+        - id (uuid)
+        - lid_id (uuid)
+        - vergadering_id (uuid)
+
+* om aanwezigheden te kunnen raadplegen/updaten
+        - SELECT COUNT(*) FROM aanwezigheid WHERE lid_id = ?
