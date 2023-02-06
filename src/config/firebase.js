@@ -4,12 +4,12 @@ import { initializeApp } from 'firebase/app';
 import { getFirestore } from 'firebase/firestore';
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCt0esEO27gupFxsMmg6an7scpd36q5JAY',
-  authDomain: 'aanwezigheden-scouts-client.firebaseapp.com',
-  projectId: 'aanwezigheden-scouts-client',
-  storageBucket: 'aanwezigheden-scouts-client.appspot.com',
-  messagingSenderId: '799038011769',
-  appId: '1:799038011769:web:5a58712a1e7eb4a48a17a8',
+  apiKey: 'AIzaSyAcZPOJa1A4UH9taW1dO5wjVjozCMcXyps',
+  authDomain: 'scouts-teralwina.firebaseapp.com',
+  projectId: 'scouts-teralwina',
+  storageBucket: 'scouts-teralwina.appspot.com',
+  messagingSenderId: '837880349344',
+  appId: '1:837880349344:web:4d09eb2e5a92a98bfc7fc5',
 };
 
 const app = initializeApp(firebaseConfig);

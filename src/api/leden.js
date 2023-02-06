@@ -9,7 +9,7 @@ import {
   getDocs,
   getDoc,
   query,
-  where
+  where,
 } from 'firebase/firestore';
 import db from '../config/firebase';
 import { v4 as uuidv4 } from 'uuid';
@@ -18,7 +18,7 @@ export const getLeden = async () => {
   try {
     const leden = [];
     const querySnapshot = await getDocs(collection(db, 'Leden'));
-     querySnapshot.forEach((doc) => {
+    querySnapshot.forEach((doc) => {
       const lid = { id: doc.id, ...doc.data() };
       leden.push(lid);
     });

@@ -28,7 +28,7 @@ const CsvParse = () => {
   };
 
   const AddLid = async (results) => {
-    await results.map((lid) => {
+    await results.forEach((lid) => {
       createLid({
         firstname: lid.Voornaam,
         lastname: lid.Achternaam,

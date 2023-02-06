@@ -249,7 +249,7 @@ function NavBar(props) {
               >
                 <Typography variant="h6">Givers</Typography>
               </Button>
-              {/*<Button
+              {/* <Button
                 ize="large"
                 sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
                 component={NavLink}

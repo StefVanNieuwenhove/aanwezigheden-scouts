@@ -21,7 +21,9 @@ const HomePage = () => {
 
   useEffect(() => {
     getLeden()
-      .then((res) => setData(res))
+      .then((res) => {
+        setData(res);
+      })
       .catch((err) => console.log(err));
   }, []);
 
