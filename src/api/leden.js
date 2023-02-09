@@ -82,7 +82,6 @@ export const lidAfwezig = async (id) => {
 };
 
 export const createLid = async ({ firstname, lastname, tak }) => {
-  console.log(firstname, lastname, tak);
   try {
     const id = uuidv4();
     await setDoc(doc(db, 'Leden', id), {

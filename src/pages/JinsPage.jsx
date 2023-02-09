@@ -1,221 +1,47 @@
 /** @format */
-/** @format */
 
-import React, { useState, useEffect } from 'react';
-import {
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableRow,
-  TableCell,
-  TableBody,
-  Container,
-  Typography,
-  Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  DialogActions,
-} from '@mui/material';
-import { getLedenByTak, lidAanwezig, lidAfwezig } from '../api/leden';
-
-const row = ['Naam', 'Aanwezigheden', 'Update'];
+import React, { useState } from 'react';
+import { TableData, Vergadering, OverzichtVergaderingen } from '../components';
+import { Box, Tab, AppBar } from '@mui/material';
+import { TabPanel, TabContext, TabList } from '@mui/lab';
 
 const JinsPage = () => {
-  const [data, setData] = useState([]);
-  const [aanwezig, setAanwezig] = useState(false);
-  const [verwijderen, setVerwijderen] = useState(false);
-  const [update, setUpdate] = useState(false);
-  const [id, setId] = useState('');
+  const [tab, setTab] = useState('1');
 
-  useEffect(() => {
-    getLedenByTak('JIN')
-      .then((res) => setData(res))
-      .catch((err) => console.log(err));
-  }, [update]);
-
-  const openAanwezig = (e) => {
-    setId(e);
-    setAanwezig(true);
-  };
-
-  const closeAanwezig = () => {
-    setAanwezig(false);
-  };
-
-  const openVerwijderen = (e) => {
-    setId(e);
-    setVerwijderen(true);
-  };
-
-  const closeVerwijderen = () => {
-    setVerwijderen(false);
-  };
-
-  const isAanwezig = () => {
-    lidAanwezig(id)
-      .then((res) => {
-        setAanwezig(false);
-        setUpdate(!update);
-      })
-      .catch((err) => console.log(err));
-  };
-
-  const nietAanwezig = async () => {
-    lidAfwezig(id)
-      .then((res) => {
-        setVerwijderen(false);
-        setUpdate(!update);
-      })
-      .catch((err) => console.log(err));
+  const handleChange = (event, newValue) => {
+    setTab(newValue);
   };
 
   return (
     <>
-      <Container maxWidth="xl" disableGutters>
-        <TableContainer component={Paper}>
-          <Table stickyHeader={true}>
-            <TableHead>
-              <TableRow>
-                <TableCell colSpan={3}>
-                  <Typography
-                    variant="h4"
-                    sx={{ textAlign: 'center', textDecoration: 'underline' }}
-                  >
-                    Jins
-                  </Typography>
-                </TableCell>
-              </TableRow>
-              <TableRow>
-                {row.map((item) => (
-                  <TableCell
-                    key={item}
-                    sx={{
-                      backgroundColor: 'green',
-                      color: 'white',
-                      textAlign: 'center',
-                      textDecoration: 'underline',
-                      borderBlock: '1px solid black',
-                      fontWeight: 'bold',
-                    }}
-                  >
-                    <Typography variant="h6">{item}</Typography>
-                  </TableCell>
-                ))}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {data.map((lid) => (
-                <TableRow key={lid.id}>
-                  <TableCell
-                    sx={{
-                      textAlign: 'center',
-                      borderBottom: '1px solid black',
-                    }}
-                  >
-                    {lid.firstname} {lid.lastname}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      textAlign: 'center',
-                      borderBottom: '1px solid black',
-                    }}
-                  >
-                    {lid.aanwezig}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      display: 'flex',
-                      justifyContent: 'space-evenly',
-                      textAlign: 'center',
-                      borderBottom: '1px solid black',
-                    }}
-                  >
-                    <Button
-                      component="button"
-                      value={lid.id}
-                      variant="contained"
-                      color="success"
-                      onClick={(e) => openAanwezig(e.target.value)}
-                      size="small"
-                    >
-                      Aanwezig
-                    </Button>
-                    <Button
-                      component="button"
-                      value={lid.id}
-                      variant="contained"
-                      color="error"
-                      onClick={(e) => openVerwijderen(e.target.value)}
-                      size="small"
-                    >
-                      Delete aanwezig
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
-      </Container>
-      <Dialog
-        open={aanwezig}
-        onClose={closeAanwezig}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {'Aanwezigheid toevoegen?'}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Weet je zeker dat je de aanwezigheid wilt toevoegen?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeAanwezig} color="error" variant="contained">
-            Niet toevoegen
-          </Button>
-          <Button
-            onClick={() => isAanwezig()}
-            autoFocus
-            color="success"
-            variant="contained"
-          >
-            Toevoegen
-          </Button>
-        </DialogActions>
-      </Dialog>
-      <Dialog
-        open={verwijderen}
-        onClose={closeVerwijderen}
-        aria-labelledby="alert-dialog-title"
-        aria-describedby="alert-dialog-description"
-      >
-        <DialogTitle id="alert-dialog-title">
-          {'Aanwezigheid verwijderen?'}
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-description">
-            Weet je zeker dat je de aanwezigheid wilt verwijderen?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={closeVerwijderen} color="error" variant="contained">
-            Niet verwijderen
-          </Button>
-          <Button
-            onClick={() => nietAanwezig()}
-            autoFocus
-            color="success"
-            variant="contained"
-          >
-            verwijderen
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <Box sx={{ width: '100%', typography: 'body1' }}>
+        <TabContext value={tab}>
+          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
+            <AppBar sx={{ mt: 8 }}>
+              <TabList
+                onChange={handleChange}
+                variant="fullWidth"
+                centered
+                textColor="inherit"
+                indicatorColor="inherit"
+              >
+                <Tab label="Overzicht aanwezigheden" value="1" />
+                <Tab label="Vergadering toevoegen" value="2" />
+                <Tab label="Overzicht vergaderingen" value="3" />
+              </TabList>
+            </AppBar>
+          </Box>
+          <TabPanel value={'1'}>
+            <TableData tak={'JIN'} />
+          </TabPanel>
+          <TabPanel value={'2'}>
+            <Vergadering tak={'JIN'} />
+          </TabPanel>
+          <TabPanel value={'3'}>
+            <OverzichtVergaderingen tak={'JIN'} />
+          </TabPanel>
+        </TabContext>
+      </Box>
     </>
   );
 };

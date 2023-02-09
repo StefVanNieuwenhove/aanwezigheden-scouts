@@ -15,8 +15,6 @@ import {
   IconButton,
   Button,
   Drawer,
-  useScrollTrigger,
-  Slide,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { NavLink } from 'react-router-dom';
@@ -157,99 +155,81 @@ function NavBar(props) {
     </Box>
   );
 
-  function HideOnScroll(props) {
-    const { children, window } = props;
-
-    const trigger = useScrollTrigger({
-      target: window ? window() : undefined,
-    });
-
-    return (
-      <Slide appear={false} direction="down" in={!trigger}>
-        {children}
-      </Slide>
-    );
-  }
-
   const container =
     window !== undefined ? () => window().document.body : undefined;
 
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <HideOnScroll {...props}>
-        <AppBar
-          component="nav"
-          sx={{ backgroundColor: 'green', color: 'white' }}
-        >
-          <Toolbar>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: 'block', lg: 'none' } }}
+      <AppBar component="nav" sx={{ backgroundColor: 'green', color: 'white' }}>
+        <Toolbar>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{ mr: 2, display: { sm: 'block', lg: 'none' } }}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography
+            variant="h4"
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
+          >
+            Scouts - aanwezigheden
+          </Typography>
+          <Box
+            sx={{
+              display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' },
+            }}
+          >
+            <Button
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <MenuIcon />
-            </IconButton>
-            <Typography
-              variant="h4"
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
+              <Typography variant="h6">Overzicht</Typography>
+            </Button>
+            <Button
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/kapoen"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              Scouts - aanwezigheden
-            </Typography>
-            <Box
-              sx={{
-                display: { xs: 'none', sm: 'none', md: 'none', lg: 'block' },
-              }}
+              <Typography variant="h6">Kapoenen</Typography>
+            </Button>
+            <Button
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/wouter"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Overzicht</Typography>
-              </Button>
-              <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/kapoen"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Kapoenen</Typography>
-              </Button>
-              <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/wouter"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Wouters</Typography>
-              </Button>
-              <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/jonggiver"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Jonggivers</Typography>
-              </Button>
-              <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/giver"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Givers</Typography>
-              </Button>
-              {/* <Button
+              <Typography variant="h6">Wouters</Typography>
+            </Button>
+            <Button
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/jonggiver"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              <Typography variant="h6">Jonggivers</Typography>
+            </Button>
+            <Button
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/giver"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              <Typography variant="h6">Givers</Typography>
+            </Button>
+            {/* <Button
                 ize="large"
                 sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
                 component={NavLink}
@@ -276,10 +256,9 @@ function NavBar(props) {
               >
                 <Typography variant="h6">Remove</Typography>
               </Button> */}
-            </Box>
-          </Toolbar>
-        </AppBar>
-      </HideOnScroll>
+          </Box>
+        </Toolbar>
+      </AppBar>
       <Toolbar />
       <Box component="nav">
         <Drawer

@@ -9,3 +9,4 @@ export { default as Givers } from './GiversPage';
 export { default as Jins } from './JinsPage.jsx';
 export { default as NotFound } from './NotFoundPage';
 export { default as Delete } from './DeletePage';
+export { default as Login } from './LoginPage';

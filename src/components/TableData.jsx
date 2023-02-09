@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import {
   TableContainer,
+  Paper,
   Table,
   TableHead,
   TableRow,
@@ -11,27 +12,32 @@ import {
   Container,
   Typography,
 } from '@mui/material';
-import { getLeden } from '../api/leden';
+import { getLedenByTak } from '../api/leden';
 
-const row = ['Naam', 'Tak', 'Aanwezigheden'];
+const row = ['Naam', 'Aanwezigheden'];
 
-const HomePage = () => {
+const TableData = ({ tak }) => {
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    getLeden()
-      .then((res) => {
-        setData(res);
-      })
+    getLedenByTak(tak)
+      .then((res) => setData(res))
       .catch((err) => console.log(err));
-  }, []);
+  }, [tak]);
 
   return (
     <>
-      <Container maxWidth="xl" disableGutters>
-        <TableContainer>
-          <Table stickyHeader>
+      <Container maxWidth="md" sx={{ mt: 5 }}>
+        <Typography
+          variant="h4"
+          sx={{ textAlign: 'center', textDecoration: 'underline' }}
+        >
+          {tak}
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table stickyHeader={true}>
             <TableHead>
+              <TableRow></TableRow>
               <TableRow>
                 {row.map((item) => (
                   <TableCell
@@ -67,14 +73,6 @@ const HomePage = () => {
                       borderBottom: '1px solid black',
                     }}
                   >
-                    {lid.tak}
-                  </TableCell>
-                  <TableCell
-                    sx={{
-                      textAlign: 'center',
-                      borderBottom: '1px solid black',
-                    }}
-                  >
                     {lid.aanwezig}
                   </TableCell>
                 </TableRow>
@@ -87,4 +85,4 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+export default TableData;
