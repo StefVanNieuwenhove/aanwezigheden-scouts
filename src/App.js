@@ -12,6 +12,8 @@ import {
   Givers,
   Jins,
   Delete,
+  Login,
+  NotFound,
 } from './pages';
 
 function App() {
@@ -20,6 +22,7 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
+
         <Route path="/kapoen" element={<Kapoenen />} />
         <Route path="/wouter" element={<Wouters />} />
         <Route path="/jonggiver" element={<Jonggivers />} />
@@ -27,6 +30,8 @@ function App() {
         <Route path="/jin" element={<Jins />} />
         <Route path="/add" element={<Add />} />
         <Route path="/delete" element={<Delete />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
   );
