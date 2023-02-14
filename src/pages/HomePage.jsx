@@ -21,7 +21,10 @@ const HomePage = () => {
   useEffect(() => {
     getLeden()
       .then((res) => {
-        setData(res);
+        const value = res.sort((a, b) => {
+          return a.tak < b.tak ? 1 : -1;
+        });
+        setData(value);
       })
       .catch((err) => console.log(err));
   }, []);

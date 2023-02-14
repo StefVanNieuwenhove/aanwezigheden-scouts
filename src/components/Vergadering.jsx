@@ -57,6 +57,7 @@ const Vergadering = ({ tak }) => {
   const handleClick = (e) => {
     const { value, checked } = e.target;
     if (checked) setLeden([...leden, value]);
+    else setLeden(leden.filter((lid) => lid !== value));
   };
 
   const handleClose = (event, reason) => {
@@ -99,7 +100,7 @@ const Vergadering = ({ tak }) => {
           />
           <Box>
             <TableContainer
-              sx={{ maxHeight: 420, color: 'success', mt: 2 }}
+              sx={{ maxHeight: 420, color: 'green', mt: 2 }}
               component={Paper}
               elevation={12}
             >
@@ -122,7 +123,7 @@ const Vergadering = ({ tak }) => {
                           value={lid.id}
                           name="leden"
                           onClick={(e) => handleClick(e)}
-                          checked={leden.includes(lid.id) ? true : false}
+                          checked={leden.includes(lid.id)}
                         />
                       </TableCell>
                       <TableCell>{lid.firstname}</TableCell>

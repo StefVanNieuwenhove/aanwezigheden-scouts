@@ -4,16 +4,30 @@ import {
   doc,
   updateDoc,
   setDoc,
-  deleteDoc,
   collection,
   getDocs,
   getDoc,
   query,
   where,
+  deleteDoc,
 } from 'firebase/firestore';
 import db from '../config/firebase';
 import { v4 as uuidv4 } from 'uuid';
-import { lidAanwezig } from './leden';
+import { lidAanwezig, lidAfwezig } from './leden';
+
+export const getVergaderingById = async (id) => {
+  try {
+    if (!id) return;
+    const vergadering = await getDoc(doc(db, 'Vergadering', id));
+    if (vergadering.exists()) {
+      return vergadering.data();
+    } else {
+      console.log('No such document!');
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const getVergaderingByTak = async (tak) => {
   try {
@@ -45,6 +59,46 @@ export const createVergadering = async (vergadering, leden, tak, datum) => {
     leden.map((lid) => {
       lidAanwezig(lid);
     });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateVergaderingAddLid = async (id, lid) => {
+  try {
+    console.log(id, lid);
+    const data = await getDoc(doc(db, 'Vergadering', id));
+    const leden = data.data().leden;
+    leden.push(lid);
+    await updateDoc(doc(db, 'Vergadering', id), {
+      leden: leden,
+    });
+    lidAanwezig(lid);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const updateVergaderingRemoveLid = async (id, lid) => {
+  try {
+    const data = await getDoc(doc(db, 'Vergadering', id));
+    const leden = data.data().leden;
+    const index = leden.indexOf(lid);
+    if (index > -1) {
+      leden.splice(index, 1);
+    }
+    await updateDoc(doc(db, 'Vergadering', id), {
+      leden: leden,
+    });
+    lidAfwezig(lid);
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export const deleteVergadering = async (id) => {
+  try {
+    await deleteDoc(doc(db, 'Vergadering', id));
   } catch (error) {
     console.log(error);
   }

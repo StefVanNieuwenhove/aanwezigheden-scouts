@@ -21,7 +21,12 @@ const TableData = ({ tak }) => {
 
   useEffect(() => {
     getLedenByTak(tak)
-      .then((res) => setData(res))
+      .then((res) => {
+        const value = res.sort((a, b) => {
+          return a.aanwezig < b.aanwezig ? 1 : -1;
+        });
+        setData(value);
+      })
       .catch((err) => console.log(err));
   }, [tak]);
 

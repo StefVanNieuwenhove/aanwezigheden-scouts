@@ -32,7 +32,8 @@ export const getLidById = async (id) => {
   try {
     const lid = await getDoc(doc(db, 'Leden', id));
     if (lid.exists()) {
-      return lid.data();
+      const data = { id: lid.id, ...lid.data() };
+      return data;
     } else {
       console.log('No such document!');
     }
