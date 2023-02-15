@@ -47,7 +47,13 @@ export const getVergaderingByTak = async (tak) => {
   }
 };
 
-export const createVergadering = async (vergadering, leden, tak, datum) => {
+export const createVergadering = async (
+  vergadering,
+  leden,
+  tak,
+  datum,
+  user
+) => {
   try {
     const id = uuidv4();
     await setDoc(doc(db, 'Vergadering', id), {
@@ -55,8 +61,9 @@ export const createVergadering = async (vergadering, leden, tak, datum) => {
       leden: leden,
       tak: tak,
       datum: datum,
+      user: user,
     });
-    leden.map((lid) => {
+    leden.forEach((lid) => {
       lidAanwezig(lid);
     });
   } catch (error) {

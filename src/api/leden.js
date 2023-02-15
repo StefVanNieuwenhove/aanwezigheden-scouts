@@ -82,12 +82,12 @@ export const lidAfwezig = async (id) => {
   }
 };
 
-export const createLid = async ({ firstname, lastname, tak }) => {
+export const createLid = async ({ voornaam, familienaam, tak }) => {
   try {
     const id = uuidv4();
     await setDoc(doc(db, 'Leden', id), {
-      firstname: firstname,
-      lastname: lastname,
+      voornaam: voornaam,
+      familienaam: familienaam,
       tak: tak,
       aanwezig: 0,
     });

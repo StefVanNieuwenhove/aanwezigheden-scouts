@@ -6,5 +6,5 @@ export { default as CsvParse } from './CsvParse';
 export { default as TableData } from './TableData';
 export { default as Vergadering } from './Vergadering';
 export { default as OverzichtVergaderingen } from './OverzichtVergaderingen';
-export { default as ListLeden } from './ListLeden';
 export { default as UpdateVergadering } from './UpdateVergadering';
+export { default as PrivateRoute } from './routes/PrivateRoute';

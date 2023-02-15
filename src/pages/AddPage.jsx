@@ -6,7 +6,7 @@ import { Box, Tab, AppBar } from '@mui/material';
 import { TabPanel, TabContext, TabList } from '@mui/lab';
 
 export default function AddPage() {
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState('1');
 
   const handleChange = (event, newValue) => {
     setTab(newValue);
@@ -30,10 +30,10 @@ export default function AddPage() {
               </TabList>
             </AppBar>
           </Box>
-          <TabPanel value={1}>
+          <TabPanel value={'1'}>
             <AddForm />
           </TabPanel>
-          <TabPanel value={2}>
+          <TabPanel value={'2'}>
             <CsvParse />
           </TabPanel>
         </TabContext>

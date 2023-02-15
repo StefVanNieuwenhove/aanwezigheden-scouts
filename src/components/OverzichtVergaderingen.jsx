@@ -71,31 +71,38 @@ const OverzichtVergaderingen = ({ tak }) => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <ToggleButtonGroup
-                    orientation="vertical"
-                    fullWidth
-                    color="success"
-                    value={value}
-                    exclusive
-                    onChange={(e, newValue) => {
-                      setValue(newValue);
-                      setHidden(false);
-                    }}
-                    sx={{ color: 'black' }}
-                  >
-                    {vergaderingen.map((vergadering) => (
-                      <ToggleButton key={vergadering.id} value={vergadering.id}>
-                        <Box>
-                          <Typography variant="h6">
-                            {vergadering.naam}
-                          </Typography>
-                          <Typography variant="p">
-                            {dateFormat(vergadering.datum)}
-                          </Typography>
-                        </Box>
-                      </ToggleButton>
-                    ))}
-                  </ToggleButtonGroup>
+                  <TableRow>
+                    <TableCell>
+                      <ToggleButtonGroup
+                        orientation="vertical"
+                        fullWidth
+                        color="success"
+                        value={value}
+                        exclusive
+                        onChange={(e, newValue) => {
+                          setValue(newValue);
+                          setHidden(false);
+                        }}
+                        sx={{ color: 'black' }}
+                      >
+                        {vergaderingen.map((vergadering) => (
+                          <ToggleButton
+                            key={vergadering.id}
+                            value={vergadering.id}
+                          >
+                            <Box>
+                              <Typography variant="h6">
+                                {vergadering.naam}
+                              </Typography>
+                              <Typography variant="p">
+                                {dateFormat(vergadering.datum)}
+                              </Typography>
+                            </Box>
+                          </ToggleButton>
+                        ))}
+                      </ToggleButtonGroup>
+                    </TableCell>
+                  </TableRow>
                 </TableBody>
               </Table>
             </TableContainer>

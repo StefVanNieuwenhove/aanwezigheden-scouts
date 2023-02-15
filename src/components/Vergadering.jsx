@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { getLedenByTak } from '../api/leden';
 import { createVergadering } from '../api/vergadering';
+import { UserAuth } from '../context/UserContext';
 import {
   FormControl,
   Container,
@@ -29,6 +30,7 @@ const Vergadering = ({ tak }) => {
   const [datum, setDatum] = useState('');
   const [leden, setLeden] = useState([]);
   const [open, setOpen] = useState(false);
+  const { user } = UserAuth();
 
   useEffect(() => {
     getLedenByTak(tak)
@@ -41,17 +43,19 @@ const Vergadering = ({ tak }) => {
     if (vergadering.length < 3 && leden.length === 0 && datum > Date.now())
       return;
     else {
-      createVergadering(vergadering, leden, tak, datum);
+      createVergadering(vergadering, leden, tak, datum, user.email);
       setOpen(true);
     }
     setVergadering('');
     setLeden([]);
+    setDatum('');
   };
 
   const handleReset = (e) => {
     e.preventDefault();
     setVergadering('');
     setLeden([]);
+    setDatum('');
   };
 
   const handleClick = (e) => {
@@ -126,8 +130,8 @@ const Vergadering = ({ tak }) => {
                           checked={leden.includes(lid.id)}
                         />
                       </TableCell>
-                      <TableCell>{lid.firstname}</TableCell>
-                      <TableCell>{lid.lastname}</TableCell>
+                      <TableCell>{lid.voornaam}</TableCell>
+                      <TableCell>{lid.familienaam}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

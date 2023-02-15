@@ -32,7 +32,7 @@ const TableData = ({ tak }) => {
 
   return (
     <>
-      <Container maxWidth="md" sx={{ mt: 5 }}>
+      <Container maxWidth="md" sx={{ mt: 5 }} disableGutters>
         <Typography
           variant="h4"
           sx={{ textAlign: 'center', textDecoration: 'underline' }}
@@ -70,7 +70,7 @@ const TableData = ({ tak }) => {
                       borderBottom: '1px solid black',
                     }}
                   >
-                    {lid.firstname} {lid.lastname}
+                    {lid.voornaam} {lid.familienaam}
                   </TableCell>
                   <TableCell
                     sx={{

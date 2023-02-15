@@ -18,9 +18,9 @@ import {
 
 const takken = ['kapoen', 'wouter', 'jonggiver', 'giver', 'jin'];
 const validationSchema = Yup.object({
-  firstname: Yup.string().required('Firstname is required'),
-  lastname: Yup.string().required('Lastname is required'),
-  tak: Yup.string().required('Tak is required').isType(takken),
+  voornaam: Yup.string().required('Voornaam is verplicht in te vullen'),
+  familienaam: Yup.string().required('familienaam is verplicht in te vullen'),
+  tak: Yup.string().required('Tak is verplicht').isType(takken),
 });
 
 const AddForm = () => {
@@ -30,15 +30,15 @@ const AddForm = () => {
   const { values, handleChange, handleSubmit, errors, handleReset } = useFormik(
     {
       initialValues: {
-        firstname: '',
-        lastname: '',
+        voornaam: '',
+        familienaam: '',
         tak: 'kapoen',
       },
       onSubmit: (values) => {
-        handleReset();
         setOpen(true);
         createLid(values);
         setFocus(true);
+        handleReset();
       },
       validationSchema,
     }
@@ -57,29 +57,29 @@ const AddForm = () => {
         <Container maxWidth="sm">
           <FormControl sx={{ padding: '1rem' }} fullWidth variant="outlined">
             <TextField
-              name="firstname"
+              name="voornaam"
               color="success"
-              label="Firstname"
+              label="Voornaam"
               margin="normal"
               onChange={handleChange}
               required
               variant="outlined"
-              value={values.firstname}
+              value={values.voornaam}
               autoFocus={focus}
-              error={errors && errors?.firstname ? true : false}
-              helperText={errors?.firstname}
+              error={errors && errors?.voornaam ? true : false}
+              helperText={errors?.voornaam}
             />
             <TextField
-              name="lastname"
+              name="familienaam"
               color="success"
-              label="Lastname"
+              label="Familienaam"
               margin="normal"
               onChange={handleChange}
               required
               variant="outlined"
-              value={values.lastname}
-              error={errors && errors?.lastname ? true : false}
-              helperText={errors?.lastname}
+              value={values.familienaam}
+              error={errors && errors?.familienaam ? true : false}
+              helperText={errors?.familienaam}
             />
             <Autocomplete
               name="tak"

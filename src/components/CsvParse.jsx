@@ -30,8 +30,8 @@ const CsvParse = () => {
   const AddLid = async (results) => {
     await results.forEach((lid) => {
       createLid({
-        firstname: lid.Voornaam,
-        lastname: lid.Achternaam,
+        voornaam: lid.Voornaam,
+        familienaam: lid.Achternaam,
         tak: lid.Takken,
       });
     });
@@ -63,7 +63,7 @@ const CsvParse = () => {
           }}
           endIcon={<AttachFileSharpIcon />}
         >
-          Choose file{' '}
+          Choose file
           <input hidden accept="text/csv" type="file" onChange={handleChange} />
         </Button>
         <Button

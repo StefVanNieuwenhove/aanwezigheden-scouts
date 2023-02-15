@@ -57,7 +57,7 @@ const UpdateVergadering = ({ vergadering, tak }) => {
 
   const getOverigeLeden = (aanwezigen, leden) => {
     const data = leden.filter((lid) => !aanwezigen.includes(lid.id));
-    return data.map((lid) => lid.firstname + ' ' + lid.lastname);
+    return data.map((lid) => lid.voornaam + ' ' + lid.familienaam);
   };
 
   const handleClick = (e, lid) => {
@@ -73,7 +73,7 @@ const UpdateVergadering = ({ vergadering, tak }) => {
 
   const addLid = () => {
     const lid = leden.find(
-      (lid) => lid.firstname + ' ' + lid.lastname === value
+      (lid) => lid.voornaam + ' ' + lid.familienaam === value
     );
     updateVergaderingAddLid(vergadering, lid.id)
       .then(() => getVergadering(vergadering))
@@ -160,7 +160,7 @@ const DisplayLid = ({ id }) => {
   return (
     <>
       <Typography variant="h6">
-        {lid.firstname} {lid.lastname}
+        {lid.voornaam} {lid.familienaam}
       </Typography>
     </>
   );

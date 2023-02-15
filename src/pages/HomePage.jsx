@@ -10,6 +10,7 @@ import {
   TableBody,
   Container,
   Typography,
+  Paper,
 } from '@mui/material';
 import { getLeden } from '../api/leden';
 
@@ -31,8 +32,8 @@ const HomePage = () => {
 
   return (
     <>
-      <Container maxWidth="xl" disableGutters>
-        <TableContainer>
+      <Container disableGutters>
+        <TableContainer component={Paper} elevation={3}>
           <Table stickyHeader>
             <TableHead>
               <TableRow>
@@ -53,21 +54,24 @@ const HomePage = () => {
                 ))}
               </TableRow>
             </TableHead>
-            <TableBody>
+            <TableBody sx={{}}>
               {data.map((lid) => (
                 <TableRow key={lid.id}>
                   <TableCell
+                    size="small"
                     sx={{
                       textAlign: 'center',
                       borderBottom: '1px solid black',
+                      width: { xs: '150px' },
                     }}
                   >
-                    {lid.firstname} {lid.lastname}
+                    {lid.voornaam} {lid.familienaam}
                   </TableCell>
                   <TableCell
                     sx={{
                       textAlign: 'center',
                       borderBottom: '1px solid black',
+                      maxWidth: { xs: '100px' },
                     }}
                   >
                     {lid.tak}
@@ -76,6 +80,7 @@ const HomePage = () => {
                     sx={{
                       textAlign: 'center',
                       borderBottom: '1px solid black',
+                      width: { xs: '150px' },
                     }}
                   >
                     {lid.aanwezig}

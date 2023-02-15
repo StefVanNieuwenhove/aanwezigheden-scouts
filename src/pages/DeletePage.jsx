@@ -86,7 +86,7 @@ const DeletePage = () => {
                       borderBottom: '1px solid black',
                     }}
                   >
-                    {lid.firstname} {lid.lastname}
+                    {lid.voornaam} {lid.familienaam}
                   </TableCell>
                   <TableCell
                     sx={{

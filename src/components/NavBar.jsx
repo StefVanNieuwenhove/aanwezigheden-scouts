@@ -15,15 +15,22 @@ import {
   IconButton,
   Button,
   Drawer,
+  Menu,
+  MenuItem,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
-import { NavLink } from 'react-router-dom';
+import AccountCircle from '@mui/icons-material/AccountCircle';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { UserAuth } from '../context/UserContext';
 
 const drawerWidth = 185;
 
 function NavBar(props) {
+  const { user, logout } = UserAuth();
+  const navigate = useNavigate();
   const { window } = props;
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -37,6 +44,19 @@ function NavBar(props) {
     textDecoration: 'underline',
     backgroundColor: 'green',
     color: 'white',
+  };
+
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigate('/login');
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const drawer = (
@@ -230,33 +250,57 @@ function NavBar(props) {
               <Typography variant="h6">Givers</Typography>
             </Button>
             {/* <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/jin"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Jins</Typography>
-              </Button>
-              <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/add"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Create</Typography>
-              </Button>
-              <Button
-                ize="large"
-                sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-                component={NavLink}
-                to="/delete"
-                style={({ isActive }) => (isActive ? activeStyle : undefined)}
-              >
-                <Typography variant="h6">Remove</Typography>
-              </Button> */}
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/jin"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              <Typography variant="h6">Jins</Typography>
+            </Button>
+            <Button
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/add"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              <Typography variant="h6">Create</Typography>
+            </Button>
+            <Button
+              ize="large"
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to="/delete"
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              <Typography variant="h6">Remove</Typography>
+            </Button> */}
           </Box>
+          {user && (
+            <Box>
+              <IconButton size="large" onClick={handleMenu} color="inherit">
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={Boolean(anchorEl)}
+                onClose={() => setAnchorEl(null)}
+              >
+                <MenuItem onClick={handleLogout}>Logout</MenuItem>
+              </Menu>
+            </Box>
+          )}
         </Toolbar>
       </AppBar>
       <Toolbar />
