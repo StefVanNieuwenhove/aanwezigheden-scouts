@@ -12,7 +12,7 @@ Er is eventueel de mogelijkheid om extra kindjes toe te voegen aan bepaalde verg
 
 ## Gebruikte tools
 
-- Gemaakt met het react framework in javascript
+- Gemaakt met het React.js framework
 - Gebruik gemaakt van mui voor de ui
 - Gebruikt gemaakt van google sdk: firebase
   - Authentication
