@@ -4,6 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { getLedenByTak } from '../api/leden';
 import { createVergadering } from '../api/vergadering';
 import { UserAuth } from '../context/UserContext';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import {
   FormControl,
   Container,
@@ -22,47 +24,61 @@ import {
   FormHelperText,
   Snackbar,
   Alert,
+  Typography,
 } from '@mui/material';
 
 const Vergadering = ({ tak }) => {
   const [data, setData] = useState([]);
-  const [vergadering, setVergadering] = useState('');
+  /* const [vergadering, setVergadering] = useState('');
   const [datum, setDatum] = useState('');
-  const [leden, setLeden] = useState([]);
+  const [leden, setLeden] = useState([]); */
   const [open, setOpen] = useState(false);
   const { user } = UserAuth();
 
+  const {
+    values,
+    errors,
+    handleChange,
+    handleReset,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: {
+      vergadering: '',
+      datum: '',
+      leden: [],
+    },
+    validationSchema: Yup.object({
+      vergadering: Yup.string()
+        .min(3, 'Min. lengte van 3 karakters')
+        .required('Vergadering is verplicht'),
+      datum: Yup.date().required('Datum is verplicht'),
+      leden: Yup.array().min(1, 'Min. 1 lid selecteren'),
+    }),
+    onSubmit: (values) => {
+      console.group(values);
+      createVergadering(
+        values.vergadering,
+        values.leden,
+        tak,
+        values.datum,
+        user.email
+      );
+      setOpen(true);
+      handleReset();
+    },
+  });
+
   useEffect(() => {
     getLedenByTak(tak)
-      .then((res) => setData(res))
+      .then((res) => {
+        const data = res.sort((a, b) => {
+          return a.voornaam > b.voornaam ? 1 : -1;
+        });
+        setData(data);
+      })
       .catch((err) => console.log(err));
   }, [tak]);
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (vergadering.length < 3 && leden.length === 0 && datum > Date.now())
-      return;
-    else {
-      createVergadering(vergadering, leden, tak, datum, user.email);
-      setOpen(true);
-    }
-    setVergadering('');
-    setLeden([]);
-    setDatum('');
-  };
-
-  const handleReset = (e) => {
-    e.preventDefault();
-    setVergadering('');
-    setLeden([]);
-    setDatum('');
-  };
-
-  const handleClick = (e) => {
-    const { value, checked } = e.target;
-    if (checked) setLeden([...leden, value]);
-    else setLeden(leden.filter((lid) => lid !== value));
-  };
 
   const handleClose = (event, reason) => {
     if (reason === 'clickaway') {
@@ -81,41 +97,64 @@ const Vergadering = ({ tak }) => {
             margin="normal"
             label="Vergadering"
             variant="outlined"
-            value={vergadering}
-            onChange={(e) => setVergadering(e.target.value)}
+            value={values.vergadering}
+            onChange={handleChange}
             autoFocus={true}
             placeholder="Vergadering 1"
             required
             fullWidth
             helperText="Min. lengte van 3 karakters"
+            error={errors && errors?.vergadering ? true : false}
           />
           <TextField
             name="datum"
             color="success"
             margin="normal"
             variant="outlined"
-            value={datum}
-            onChange={(e) => setDatum(e.target.value)}
+            value={values.datum}
+            onChange={handleChange}
             required
             fullWidth
             type={'date'}
             helperText="Datum van de vergadering"
             format="dd/MM/yyyy"
+            error={errors && errors?.datum ? true : false}
           />
           <Box>
             <TableContainer
               sx={{ maxHeight: 420, color: 'green', mt: 2 }}
               component={Paper}
               elevation={12}
+              fullWidth
             >
               <Table stickyHeader>
                 <TableHead>
                   <TableRow>
-                    <TableCell padding="checkbox">
-                      <Checkbox color="success" disabled />
+                    <TableCell
+                      sx={{
+                        backgroundColor: 'green',
+                        color: 'white',
+                        textDecoration: 'underline',
+                      }}
+                    ></TableCell>
+                    <TableCell
+                      sx={{
+                        backgroundColor: 'green',
+                        color: 'white',
+                        textDecoration: 'underline',
+                      }}
+                    >
+                      <Typography variant="h5">Voornaam</Typography>
                     </TableCell>
-                    <TableCell>Voornaam</TableCell>
-                    <TableCell>Achternaam</TableCell>
+                    <TableCell
+                      sx={{
+                        backgroundColor: 'green',
+                        color: 'white',
+                        textDecoration: 'underline',
+                      }}
+                    >
+                      <Typography variant="h5">Familienaam</Typography>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
@@ -124,10 +163,20 @@ const Vergadering = ({ tak }) => {
                       <TableCell padding="checkbox">
                         <Checkbox
                           color="success"
-                          value={lid.id}
+                          value={values.leden}
+                          onChange={(e) => {
+                            if (e.target.checked) {
+                              setFieldValue('leden', [...values.leden, lid.id]);
+                            } else {
+                              setFieldValue(
+                                'leden',
+                                values.leden.filter((l) => l !== lid.id)
+                              );
+                            }
+                          }}
                           name="leden"
-                          onClick={(e) => handleClick(e)}
-                          checked={leden.includes(lid.id)}
+                          id={lid.id}
+                          checked={values.leden.includes(lid.id)}
                         />
                       </TableCell>
                       <TableCell>{lid.voornaam}</TableCell>
@@ -161,7 +210,6 @@ const Vergadering = ({ tak }) => {
                 color="success"
                 fullWidth
                 onClick={handleSubmit}
-                disabled={vergadering.length < 3 || leden.length === 0}
               >
                 Voeg toe
               </Button>

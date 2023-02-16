@@ -39,7 +39,7 @@ const TableData = ({ tak }) => {
         >
           {tak}
         </Typography>
-        <TableContainer component={Paper}>
+        <TableContainer component={Paper} elevation={12}>
           <Table stickyHeader={true}>
             <TableHead>
               <TableRow></TableRow>

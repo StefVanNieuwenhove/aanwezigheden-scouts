@@ -43,7 +43,10 @@ const LoginPage = () => {
 
   return (
     <>
-      <Container maxWidth="sm">
+      <Container
+        maxWidth="sm"
+        sx={{ display: 'flex', justifyContent: 'center', pt: 10 }}
+      >
         <Box>
           <Typography
             variant="h4"
@@ -51,7 +54,14 @@ const LoginPage = () => {
             align="center"
             sx={{ textDecoration: 'underline' }}
           >
-            Login in
+            Aanwezigheden scouts
+          </Typography>
+          <Typography
+            variant="h6"
+            align="center"
+            sx={{ textDecoration: 'underline' }}
+          >
+            Log in
           </Typography>
           <FormControl fullWidth>
             <TextField

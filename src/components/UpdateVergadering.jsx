@@ -7,6 +7,7 @@ import {
   updateVergaderingAddLid,
 } from '../api/vergadering';
 import { getLidById, getLedenByTak } from '../api/leden';
+import { UserAuth } from '../context/UserContext';
 import {
   Table,
   TableCell,
@@ -29,6 +30,7 @@ const UpdateVergadering = ({ vergadering, tak }) => {
   const [leden, setLeden] = useState([]);
   const [update, setUpdate] = useState(false);
   const [value, setValue] = useState('');
+  const { user } = UserAuth();
 
   useEffect(() => {
     getVergadering(vergadering);
@@ -62,7 +64,7 @@ const UpdateVergadering = ({ vergadering, tak }) => {
 
   const handleClick = (e, lid) => {
     e.preventDefault();
-    updateVergaderingRemoveLid(vergadering, lid)
+    updateVergaderingRemoveLid(vergadering, lid, user)
       .then((data) => {
         getVergadering(vergadering);
       })
@@ -75,7 +77,7 @@ const UpdateVergadering = ({ vergadering, tak }) => {
     const lid = leden.find(
       (lid) => lid.voornaam + ' ' + lid.familienaam === value
     );
-    updateVergaderingAddLid(vergadering, lid.id)
+    updateVergaderingAddLid(vergadering, lid.id, user)
       .then(() => getVergadering(vergadering))
       .catch((error) => console.log(error));
     setValue('');
@@ -113,7 +115,9 @@ const UpdateVergadering = ({ vergadering, tak }) => {
                     value={value}
                     onChange={(e, value) => setValue(value)}
                     options={getOverigeLeden(aanwezigen, leden)}
-                    renderInput={(params) => <TextField {...params} />}
+                    renderInput={(params) => (
+                      <TextField {...params} color="success" />
+                    )}
                     sx={{ color: 'green' }}
                     fullWidth
                   />

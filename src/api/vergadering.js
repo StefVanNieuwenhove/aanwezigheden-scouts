@@ -71,7 +71,7 @@ export const createVergadering = async (
   }
 };
 
-export const updateVergaderingAddLid = async (id, lid) => {
+export const updateVergaderingAddLid = async (id, lid, user) => {
   try {
     console.log(id, lid);
     const data = await getDoc(doc(db, 'Vergadering', id));
@@ -79,6 +79,7 @@ export const updateVergaderingAddLid = async (id, lid) => {
     leden.push(lid);
     await updateDoc(doc(db, 'Vergadering', id), {
       leden: leden,
+      user: user,
     });
     lidAanwezig(lid);
   } catch (error) {
@@ -86,7 +87,7 @@ export const updateVergaderingAddLid = async (id, lid) => {
   }
 };
 
-export const updateVergaderingRemoveLid = async (id, lid) => {
+export const updateVergaderingRemoveLid = async (id, lid, user) => {
   try {
     const data = await getDoc(doc(db, 'Vergadering', id));
     const leden = data.data().leden;
@@ -96,6 +97,7 @@ export const updateVergaderingRemoveLid = async (id, lid) => {
     }
     await updateDoc(doc(db, 'Vergadering', id), {
       leden: leden,
+      user: user,
     });
     lidAfwezig(lid);
   } catch (error) {
