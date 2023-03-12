@@ -10,6 +10,9 @@ import {
   query,
   where,
   deleteDoc,
+  runTransaction,
+  arrayUnion,
+  arrayRemove,
 } from 'firebase/firestore';
 import db from '../config/firebase';
 import { v4 as uuidv4 } from 'uuid';
@@ -73,13 +76,8 @@ export const createVergadering = async (
 
 export const updateVergaderingAddLid = async (id, lid, user) => {
   try {
-    console.log(id, lid);
-    const data = await getDoc(doc(db, 'Vergadering', id));
-    const leden = data.data().leden;
-    leden.push(lid);
     await updateDoc(doc(db, 'Vergadering', id), {
-      leden: leden,
-      user: user,
+      leden: arrayUnion(lid),
     });
     lidAanwezig(lid);
   } catch (error) {
@@ -89,15 +87,8 @@ export const updateVergaderingAddLid = async (id, lid, user) => {
 
 export const updateVergaderingRemoveLid = async (id, lid, user) => {
   try {
-    const data = await getDoc(doc(db, 'Vergadering', id));
-    const leden = data.data().leden;
-    const index = leden.indexOf(lid);
-    if (index > -1) {
-      leden.splice(index, 1);
-    }
     await updateDoc(doc(db, 'Vergadering', id), {
-      leden: leden,
-      user: user,
+      leden: arrayRemove(lid),
     });
     lidAfwezig(lid);
   } catch (error) {

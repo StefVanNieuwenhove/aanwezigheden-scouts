@@ -14,7 +14,7 @@ Er is eventueel de mogelijkheid om extra kindjes toe te voegen aan bepaalde verg
 
 - Gemaakt met het React.js framework
 - Gebruik gemaakt van mui voor de ui
-- Gebruikt gemaakt van google sdk: firebase
+- Gebruikt gemaakt van google sdk firebase
   - Authentication
   - Hosting
   - Cloud firestore
