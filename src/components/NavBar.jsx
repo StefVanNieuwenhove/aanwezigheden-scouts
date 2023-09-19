@@ -69,7 +69,7 @@ function NavBar(props) {
         height: '100%',
       }}
     >
-      <Typography variant="h6" sx={{ my: 2 }}>
+      <Typography variant='h6' sx={{ my: 2 }}>
         Scouts aanwezigheden
       </Typography>
       <Divider sx={{ color: 'black' }} />
@@ -78,11 +78,11 @@ function NavBar(props) {
           <ListItemButton
             sx={{ textAlign: 'center' }}
             component={NavLink}
-            to="/"
+            to='/'
             style={({ isActive }) => (isActive ? activeStyleDrawer : undefined)}
           >
             <ListItemText>
-              <Typography variant="h6">Overzicht</Typography>
+              <Typography variant='h6'>Overzicht</Typography>
             </ListItemText>
           </ListItemButton>
         </ListItem>
@@ -90,11 +90,11 @@ function NavBar(props) {
           <ListItemButton
             sx={{ textAlign: 'center' }}
             component={NavLink}
-            to="/kapoen"
+            to='/kapoen'
             style={({ isActive }) => (isActive ? activeStyleDrawer : undefined)}
           >
             <ListItemText>
-              <Typography variant="h6">Kapoenen</Typography>
+              <Typography variant='h6'>Kapoenen</Typography>
             </ListItemText>
           </ListItemButton>
         </ListItem>
@@ -102,11 +102,11 @@ function NavBar(props) {
           <ListItemButton
             sx={{ textAlign: 'center' }}
             component={NavLink}
-            to="/wouter"
+            to='/wouter'
             style={({ isActive }) => (isActive ? activeStyleDrawer : undefined)}
           >
             <ListItemText>
-              <Typography variant="h6">Wouters</Typography>
+              <Typography variant='h6'>Wouters</Typography>
             </ListItemText>
           </ListItemButton>
         </ListItem>
@@ -114,11 +114,11 @@ function NavBar(props) {
           <ListItemButton
             sx={{ textAlign: 'center' }}
             component={NavLink}
-            to="/jonggiver"
+            to='/jonggiver'
             style={({ isActive }) => (isActive ? activeStyleDrawer : undefined)}
           >
             <ListItemText>
-              <Typography variant="h6">Jonggivers</Typography>
+              <Typography variant='h6'>Jonggivers</Typography>
             </ListItemText>
           </ListItemButton>
         </ListItem>
@@ -126,27 +126,30 @@ function NavBar(props) {
           <ListItemButton
             sx={{ textAlign: 'center' }}
             component={NavLink}
-            to="/giver"
+            to='/giver'
             style={({ isActive }) => (isActive ? activeStyleDrawer : undefined)}
           >
             <ListItemText>
-              <Typography variant="h6">Givers</Typography>
+              <Typography variant='h6'>Givers</Typography>
             </ListItemText>
           </ListItemButton>
         </ListItem>
-        {/* <ListItem disablePadding>
-          <ListItemButton
-            sx={{ textAlign: 'center' }}
-            component={NavLink}
-            to="/jin"
-            style={({ isActive }) => (isActive ? activeStyleDrawer : undefined)}
-          >
-            <ListItemText>
-              <Typography variant="h6">Jins</Typography>
-            </ListItemText>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
+        {
+          <ListItem disablePadding>
+            <ListItemButton
+              sx={{ textAlign: 'center' }}
+              component={NavLink}
+              to='/jin'
+              style={({ isActive }) =>
+                isActive ? activeStyleDrawer : undefined
+              }
+            >
+              <ListItemText>
+                <Typography variant='h6'>Jins</Typography>
+              </ListItemText>
+            </ListItemButton>
+          </ListItem>
+          /* <ListItem disablePadding>
           <ListItemButton
             sx={{ textAlign: 'center' }}
             component={NavLink}
@@ -169,7 +172,8 @@ function NavBar(props) {
               <Typography variant="h6">remove</Typography>
             </ListItemText>
           </ListItemButton>
-        </ListItem> */}
+        </ListItem> */
+        }
       </List>
       <Divider />
     </Box>
@@ -181,20 +185,20 @@ function NavBar(props) {
   return (
     <Box sx={{ display: 'flex' }}>
       <CssBaseline />
-      <AppBar component="nav" sx={{ backgroundColor: 'green', color: 'white' }}>
+      <AppBar component='nav' sx={{ backgroundColor: 'green', color: 'white' }}>
         <Toolbar>
           <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
+            color='inherit'
+            aria-label='open drawer'
+            edge='start'
             onClick={handleDrawerToggle}
             sx={{ mr: 2, display: { sm: 'block', lg: 'none' } }}
           >
             <MenuIcon />
           </IconButton>
           <Typography
-            variant="h4"
-            component="div"
+            variant='h4'
+            component='div'
             sx={{ flexGrow: 1, display: { xs: 'block', sm: 'block' } }}
           >
             Scouts - aanwezigheden
@@ -205,60 +209,60 @@ function NavBar(props) {
             }}
           >
             <Button
-              ize="large"
+              ize='large'
               sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
               component={NavLink}
-              to="/"
+              to='/'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <Typography variant="h6">Overzicht</Typography>
+              <Typography variant='h6'>Overzicht</Typography>
             </Button>
             <Button
-              ize="large"
+              ize='large'
               sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
               component={NavLink}
-              to="/kapoen"
+              to='/kapoen'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <Typography variant="h6">Kapoenen</Typography>
+              <Typography variant='h6'>Kapoenen</Typography>
             </Button>
             <Button
-              ize="large"
+              ize='large'
               sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
               component={NavLink}
-              to="/wouter"
+              to='/wouter'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <Typography variant="h6">Wouters</Typography>
+              <Typography variant='h6'>Wouters</Typography>
             </Button>
             <Button
-              ize="large"
+              ize='large'
               sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
               component={NavLink}
-              to="/jonggiver"
+              to='/jonggiver'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <Typography variant="h6">Jonggivers</Typography>
+              <Typography variant='h6'>Jonggivers</Typography>
             </Button>
             <Button
-              ize="large"
+              ize='large'
               sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
               component={NavLink}
-              to="/giver"
+              to='/giver'
               style={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <Typography variant="h6">Givers</Typography>
+              <Typography variant='h6'>Givers</Typography>
+            </Button>
+            <Button
+              ize='large'
+              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
+              component={NavLink}
+              to='/jin'
+              style={({ isActive }) => (isActive ? activeStyle : undefined)}
+            >
+              <Typography variant='h6'>Jins</Typography>
             </Button>
             {/* <Button
-              ize="large"
-              sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
-              component={NavLink}
-              to="/jin"
-              style={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              <Typography variant="h6">Jins</Typography>
-            </Button>
-            <Button
               ize="large"
               sx={{ color: '#fff', mx: 1, '&:hover': { color: '#000' } }}
               component={NavLink}
@@ -279,11 +283,11 @@ function NavBar(props) {
           </Box>
           {user && (
             <Box>
-              <IconButton size="large" onClick={handleMenu} color="inherit">
+              <IconButton size='large' onClick={handleMenu} color='inherit'>
                 <AccountCircle />
               </IconButton>
               <Menu
-                id="menu-appbar"
+                id='menu-appbar'
                 anchorEl={anchorEl}
                 anchorOrigin={{
                   vertical: 'top',
@@ -304,10 +308,10 @@ function NavBar(props) {
         </Toolbar>
       </AppBar>
       <Toolbar />
-      <Box component="nav">
+      <Box component='nav'>
         <Drawer
           container={container}
-          variant="temporary"
+          variant='temporary'
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
@@ -324,7 +328,7 @@ function NavBar(props) {
           {drawer}
         </Drawer>
       </Box>
-      <Box component="main">
+      <Box component='main'>
         <Toolbar />
       </Box>
     </Box>

@@ -49,11 +49,11 @@ const CsvParse = () => {
 
   return (
     <>
-      <Container maxWidth="sm" sx={{ mt: 4, textAlign: 'center' }}>
-        <Typography variant="h4">Drop a file to upload</Typography>
+      <Container maxWidth='sm' sx={{ mt: 4, textAlign: 'center' }}>
+        <Typography variant='h4'>Drop a file to upload</Typography>
         <Button
-          variant="contained"
-          component="label"
+          variant='contained'
+          component='label'
           sx={{
             backgroundColor: 'green',
             color: 'white',
@@ -64,11 +64,11 @@ const CsvParse = () => {
           endIcon={<AttachFileSharpIcon />}
         >
           Choose file
-          <input hidden accept="text/csv" type="file" onChange={handleChange} />
+          <input hidden accept='text/csv' type='file' onChange={handleChange} />
         </Button>
         <Button
-          label="Upload file"
-          variant="contained"
+          label='Upload file'
+          variant='contained'
           sx={{
             backgroundColor: 'green',
             color: 'white',
@@ -87,9 +87,9 @@ const CsvParse = () => {
         autoHideDuration={3000}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        severity="success"
+        severity='success'
       >
-        <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+        <Alert onClose={handleClose} severity='error' sx={{ width: '100%' }}>
           No file selected
         </Alert>
       </Snackbar>
@@ -98,9 +98,9 @@ const CsvParse = () => {
         autoHideDuration={3000}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
-        severity="success"
+        severity='success'
       >
-        <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+        <Alert onClose={handleClose} severity='success' sx={{ width: '100%' }}>
           File successfully uploaded
         </Alert>
       </Snackbar>

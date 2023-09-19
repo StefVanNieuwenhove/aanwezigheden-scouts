@@ -84,6 +84,7 @@ export const lidAfwezig = async (id) => {
 
 export const createLid = async ({ voornaam, familienaam, tak }) => {
   try {
+    console.log(voornaam, familienaam, tak);
     const id = uuidv4();
     await setDoc(doc(db, 'Leden', id), {
       voornaam: voornaam,
